@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: create-ingress-run
+spec:
+  taskRef:
+    name: create-ingress
+  params:
+  - name: CreateCertificate
+    value: "true"
+  - name: CertificateKeyPassphrase
+    value: asecretphrase
+  - name: CertificateSecretName
+    value: ingresssecret
+  - name: ExternalDomain
+    value: 1a1f35d15d61.ngrok.io
+  - name: Service
+    value: el-github-listener
+  - name: ServicePort
+    value: "8080"
+  timeout: 1000s
+  serviceAccountName: tekton-triggers-createwebhook
