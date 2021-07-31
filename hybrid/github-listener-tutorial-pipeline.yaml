@@ -58,7 +58,7 @@ spec:
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
-        name: tutorial-pipeline-run-1
+        generateName: tutorial-pipeline-run-
       spec:
         serviceAccountName: tutorial-service
         pipelineRef:
