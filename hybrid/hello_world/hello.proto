@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package hello_world;
+
+import "asylo/enclave.proto";
+
+// Extension to EnclaveInput for use with HelloWorld enclave.
+message HelloInput {
+  optional string to_greet = 1;
+}
+
+message HelloOutput {
+  optional string greeting_message = 1;
+}
+
+extend asylo.EnclaveInput {
+  optional HelloInput enclave_input_hello = 8086;
+}
+
+extend asylo.EnclaveOutput {
+  optional HelloOutput enclave_output_hello = 8087;
+}

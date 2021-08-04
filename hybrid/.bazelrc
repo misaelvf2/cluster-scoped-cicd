@@ -1,0 +1,22 @@
+build:asylo --crosstool_top=@com_google_asylo_toolchain//toolchain:crosstool
+build:asylo --dynamic_mode=off
+build:asylo --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:asylo --fission=no
+build:asylo --custom_malloc=@com_google_asylo_toolchain//toolchain:malloc
+build:asylo --define=grpc_no_ares=true
+
+build:sgx --config=asylo
+build:sgx --define=ASYLO_SGX=1
+build:sgx --define=SGX_SIM=0
+
+build:sgx-sim --config=asylo
+build:sgx-sim --define=ASYLO_SGX=1
+build:sgx-sim --define=SGX_SIM=1
+
+# The enclave simulation backend currently makes use of the SGX simulator.
+# However, this is subject to change and users of this config should not
+# make assumptions about it being related to SGX.
+build:enc-sim --config=sgx-sim
+
+build:asylo-dlopen --config=asylo
+build:asylo-dlopen --define=ASYLO_DLOPEN=1
