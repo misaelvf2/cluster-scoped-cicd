@@ -16,7 +16,7 @@ spec:
         - name: pathToDockerFile
           value: Dockerfile
         - name: pathToContext
-          value: /workspace/docker-source/hybrid/hello_world
+          value: /workspace/docker-source/hybrid
       resources:
         inputs:
           - name: docker-source
@@ -37,6 +37,6 @@ spec:
               - build-skaffold-web
       params:
         - name: path
-          value: /workspace/source/hybrid/hello_world/pod.yaml
+          value: /workspace/source/hybrid/pod.yaml
         - name: yamlPathToImage
           value: "spec.template.spec.containers[0].image"
