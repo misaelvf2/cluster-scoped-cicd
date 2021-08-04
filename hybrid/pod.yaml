@@ -7,8 +7,7 @@ spec:
     - name: asylo-hello-world
       image: misaelvf2/cloud-sec
       imagePullPolicy: Always
-      command:
-        - "./bazel-bin/asylo-hello-world"
-        - "It WORKS!"
+      command: ["./bazel-bin/hello_world/hello_world_sgx_sim"]
+      args: ["--names=World!"]
   imagePullSecrets:
     - name: regcred
