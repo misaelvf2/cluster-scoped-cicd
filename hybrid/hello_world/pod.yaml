@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: asylo-hello-world
+spec:
+  containers:
+    - name: asylo-hello-world
+      image: misaelvf2/cloud-sec
+      imagePullPolicy: Always
+      command:
+        - "./bazel-bin/asylo-hello-world"
+        - "It WORKS!"
+  imagePullSecrets:
+    - name: regcred
