@@ -16,12 +16,6 @@ spec:
                 secretKey: secret
             - name: "eventTypes"
               value: ["push"]
-        # - name: "only when push is received"
-        #   ref:
-        #     name: "cel"
-        #   params:
-        #     - name: "filter"
-        #       value: "body.action in ['opened', 'synchronize', 'reopened']"
       bindings:
         - ref: github-pr-binding
       template:
@@ -51,7 +45,6 @@ spec:
       value: master
     - name: gitrepositoryurl
       value: $(body.repository.clone_url)
-
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
@@ -62,28 +55,18 @@ spec:
     - name: gitrevision
     - name: gitrepositoryurl
   resourcetemplates:
-    - apiVersion: tekton.dev/v1alpha1
-      kind: TaskRun
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
       metadata:
-        generateName: github-run-
+        generateName: secure-pipeline-run-
       spec:
-        taskSpec:
-          inputs:
-            resources:
-              - name: source
-                type: git
-          steps:
-            - image: ubuntu
-              script: |
-                #! /bin/bash
-                ls -al $(inputs.resources.source.path)
-        inputs:
-          resources:
-            - name: source
-              resourceSpec:
-                type: git
-                params:
-                  - name: revision
-                    value: $(tt.params.gitrevision)
-                  - name: url
-                    value: $(tt.params.gitrepositoryurl)
+        serviceAccountName: registry-sa
+        pipelineRef:
+          name: secure-pipeline
+        resources:
+          - name: source-repo
+            resourceRef:
+              name: hello-world-git
+          - name: image-registry
+            resourceRef:
+              name: hello-world-image

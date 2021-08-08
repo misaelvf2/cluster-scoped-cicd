@@ -5,10 +5,10 @@ PASSWORD=en60573181su21
 
 
 all: cluster tekton \
-	ingress	webhook ambassador listener redis postgresql-db harbor
+	ingress	ambassador webhook pipeline-resources pipeline listener redis postgresql-db harbor
 
 cluster:
-	kind create cluster --config=kind-config.yaml
+	kind create cluster --config=YAML/kind-config.yaml
 
 tekton:
 	kubectl apply -f \
@@ -17,18 +17,24 @@ tekton:
 		https://github.com/tektoncd/dashboard/releases/latest/download/tekton-dashboard-release.yaml
 	kubectl apply -f \
 		https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+	kubectl apply -f \
+	    YAML/tekton-triggers-clusterroles.yaml
+	kubectl apply -f \
+		YAML/rbac.yaml
 
 webhook:
-	kubectl apply -f webhook-role.yaml
-	kubectl apply -f create-webhook.yaml
-	kubectl apply -f webhook-run.yaml
+	kubectl apply -f YAML/webhook-secret.yaml
+	kubectl apply -f YAML/create-webhook.yaml
+	kubectl apply -f YAML/create-webhook-run.yaml
 	sleep 30
 
 ingress:
-	kubectl apply -f create-ingress.yaml
-	kubectl apply -f create-ingress-run.yaml
+	kubectl apply -f YAML/webhook-role.yaml
+	kubectl apply -f YAML/create-ingress.yaml
+	kubectl apply -f YAML/create-ingress-run.yaml
 
 ambassador:
+	sleep 90
 	kubectl apply -f \
 		https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-crds.yaml
 	kubectl apply -n ambassador -f \
@@ -37,8 +43,18 @@ ambassador:
 		ambassador --for=condition=deployed ambassadorinstallations/ambassador
 	kubectl annotate ingress el-github-listener kubernetes.io/ingress.class=ambassador
 
+pipeline:
+	kubectl apply -f YAML/registry-sa.yaml
+	kubectl apply -f YAML/build-with-asylo-and-push.yaml
+	kubectl apply -f YAML/deploy-using-kubectl.yaml
+	kubectl apply -f YAML/secure-pipeline.yaml
+
+pipeline-resources:
+	kubectl apply -f YAML/hello-world-git-pr.yaml
+	kubectl apply -f YAML/hello-world-image-pr.yaml
+
 listener:
-	kubectl apply -f github-eventlistener-interceptor.yaml
+	kubectl apply -f YAML/pipeline-github-listener.yaml
 
 # Testing Harbor integration
 helm:

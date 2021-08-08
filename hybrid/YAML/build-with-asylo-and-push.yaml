@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: build-docker-image-from-git-source
+  name: build-with-asylo-and-push
 spec:
   params:
     - name: pathToDockerFile
