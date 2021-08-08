@@ -46,6 +46,7 @@ ambassador:
 	kubectl annotate ingress el-github-listener kubernetes.io/ingress.class=ambassador
 
 pipeline:
+	kubectl create secret docker-registy regcred --docker-username={YOUR_USERNAME} --docker-password={YOUR_PASSWORD} --docker-email={YOUR EMAIL}
 	kubectl apply -f YAML/registry-sa.yaml
 	kubectl apply -f YAML/deploy-role.yaml
 	kubectl apply -f YAML/build-with-asylo-and-push.yaml
