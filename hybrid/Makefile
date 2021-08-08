@@ -47,6 +47,7 @@ ambassador:
 
 pipeline:
 	kubectl apply -f YAML/registry-sa.yaml
+	kubectl apply -f YAML/deploy-role.yaml
 	kubectl apply -f YAML/build-with-asylo-and-push.yaml
 	kubectl apply -f YAML/deploy-using-kubectl.yaml
 	kubectl apply -f YAML/secure-pipeline.yaml

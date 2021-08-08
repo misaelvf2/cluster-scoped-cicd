@@ -1,0 +1,4 @@
+# Configure settings via ~/.in_totorc
+[in-toto settings]
+LINK_CMD_EXEC_TIMEOUT=9999999
+
