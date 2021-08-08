@@ -18,6 +18,8 @@ tekton:
 	kubectl apply -f \
 		https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
 	kubectl apply -f \
+		https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+	kubectl apply -f \
 	    YAML/tekton-triggers-clusterroles.yaml
 	kubectl apply -f \
 		YAML/rbac.yaml

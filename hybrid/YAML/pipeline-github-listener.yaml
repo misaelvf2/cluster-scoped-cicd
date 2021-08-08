@@ -42,7 +42,7 @@ metadata:
 spec:
   params:
     - name: gitrevision
-      value: master
+      value: in-toto
     - name: gitrepositoryurl
       value: $(body.repository.clone_url)
 ---

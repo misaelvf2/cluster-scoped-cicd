@@ -6,7 +6,7 @@ spec:
   resources:
     - name: source-repo
       type: git
-    - name: secure-image
+    - name: image-registry
       type: image
   tasks:
     - name: secure-build
@@ -23,7 +23,7 @@ spec:
             resource: source-repo
         outputs:
           - name: builtImage
-            resource: secure-image
+            resource: image-registry
     - name: secure-deploy
       taskRef:
         name: deploy-using-kubectl
@@ -32,11 +32,11 @@ spec:
           - name: source
             resource: source-repo
           - name: image
-            resource: secure-image
+            resource: image-registry
             from:
               - secure-build
       params:
         - name: path
           value: /workspace/source/hybrid/pod.yaml
         - name: yamlPathToImage
-          value: "spec.template.spec.containers[0].image"
+          value: "spec.spec.containers[0].image"
