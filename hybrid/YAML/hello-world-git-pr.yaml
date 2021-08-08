@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: revision
-      value: in-toto
+      value: in-toto-integration
     - name: url
       value: https://github.com/misaelvf2/cluster-scoped-cicd
