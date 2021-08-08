@@ -4,6 +4,7 @@ WORKDIR /workdir
 
 COPY . /workdir
 
+RUN apt-get install in-toto
 # RUN ["bazel", "build", "//hello_world:hello_world_sgx_sim"]
 
 # RUN ["bazel", "run", "//hello_world:hello_world_sgx_sim", "--", "--names=Misael"]

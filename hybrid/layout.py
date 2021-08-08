@@ -66,10 +66,10 @@ step_build_push.pubkeys = [build_push_pubkey["keyid"]]
 # the expected command diverges from the command that was actually used.
 
 step_build_push.set_expected_command_from_string(
-    "git clone https://github.com/in-toto/demo-project.git")
+    "/kaniko/executor")
 
-step_clone.add_product_rule_from_string("CREATE demo-project/foo.py")
-step_clone.add_product_rule_from_string("DISALLOW *")
+# step_clone.add_product_rule_from_string("CREATE demo-project/foo.py")
+# step_clone.add_product_rule_from_string("DISALLOW *")
 
 
 # The following step does not expect a command, since modifying the source
@@ -79,33 +79,33 @@ step_clone.add_product_rule_from_string("DISALLOW *")
 # to create a link metadata file for a step that is not carried out in a
 # single command (see 'in-toto-record').
 
-step_update = Step(name="update-version")
-step_update.pubkeys = [bob_pubkey["keyid"]]
+# step_update = Step(name="update-version")
+# step_update.pubkeys = [bob_pubkey["keyid"]]
 
 # Below rules specify that the materials of this step must match the
 # products of the 'clone' step and that the product of this step can be a
 # (modified) file 'demo-project/foo.py'.
 
-step_update.add_material_rule_from_string(
-    "MATCH demo-project/* WITH PRODUCTS FROM clone")
-step_update.add_material_rule_from_string("DISALLOW *")
-step_update.add_product_rule_from_string("ALLOW demo-project/foo.py")
-step_update.add_product_rule_from_string("DISALLOW *")
+# step_update.add_material_rule_from_string(
+#     "MATCH demo-project/* WITH PRODUCTS FROM clone")
+# step_update.add_material_rule_from_string("DISALLOW *")
+# step_update.add_product_rule_from_string("ALLOW demo-project/foo.py")
+# step_update.add_product_rule_from_string("DISALLOW *")
 
 
 # Below step must be carried by Carl and expects a link file with the name
 # "package.<carl's keyid prefix>.link"
 
 step_package = Step(name="package")
-step_package.pubkeys = [carl_pubkey["keyid"]]
+step_package.pubkeys = [build_push_pubkey["keyid"]]
 
 step_package.set_expected_command_from_string(
-    "tar --exclude '.git' -zcvf demo-project.tar.gz demo-project")
+    "tar --exclude '.git' -zcvf hello_world.tar.gz hello_world")
 
 step_package.add_material_rule_from_string(
-    "MATCH demo-project/* WITH PRODUCTS FROM update-version")
+    "MATCH hello_world/* WITH PRODUCTS FROM update-version")
 step_package.add_material_rule_from_string("DISALLOW *")
-step_package.add_product_rule_from_string("CREATE demo-project.tar.gz")
+step_package.add_product_rule_from_string("CREATE hello_world.tar.gz")
 step_package.add_product_rule_from_string("DISALLOW *")
 
 
@@ -120,16 +120,16 @@ step_package.add_product_rule_from_string("DISALLOW *")
 
 inspection = Inspection(name="untar")
 
-inspection.set_run_from_string("tar xzf demo-project.tar.gz")
+inspection.set_run_from_string("tar xzf hello_world.tar.gz")
 
 inspection.add_material_rule_from_string(
-    "MATCH demo-project.tar.gz WITH PRODUCTS FROM package")
+    "MATCH hello_world.tar.gz WITH PRODUCTS FROM package")
 inspection.add_product_rule_from_string(
-    "MATCH demo-project/foo.py WITH PRODUCTS FROM update-version")
+    "MATCH hello_world/foo.py WITH PRODUCTS FROM update-version")
 
 
 # Add steps and inspections to layout
-layout.steps = [step_clone, step_update, step_package]
+layout.steps = [step_build_push, step_package]
 layout.inspect = [inspection]
 
 
@@ -145,5 +145,5 @@ layout.inspect = [inspection]
 # link metadata files for final product verification.
 
 metablock = Metablock(signed=layout)
-metablock.sign(alice_key)
+metablock.sign(owner_key)
 metablock.dump("root.layout")
