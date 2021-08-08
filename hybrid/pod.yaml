@@ -9,6 +9,5 @@ spec:
       imagePullPolicy: Always
       command: ["./bazel-bin/hello_world/hello_world_sgx_sim"]
       args: ["--names=World!"]
-      ServiceAccountName: deploy-using-kubectl
   imagePullSecrets:
     - name: regcred
