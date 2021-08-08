@@ -1,0 +1,21 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+ name: deploy
+rules:
+ - apiGroups: ["*"]
+   resources: ["pods"]
+   verbs: ["get", "list", "create"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+ name: deploy-using-kubectl
+subjects:
+- apiGroup: ""
+  kind: ServiceAccount
+  name: registry-sa
+roleRef:
+  apiGroup: ""
+  kind: Role
+  name: deploy
