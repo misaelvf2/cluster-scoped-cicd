@@ -39,4 +39,4 @@ spec:
         - name: path
           value: /workspace/source/hybrid/pod.yaml
         - name: yamlPathToImage
-          value: "spec.spec.containers[0].image"
+          value: "spec.containers[0].image"
