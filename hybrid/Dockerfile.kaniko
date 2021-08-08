@@ -10,6 +10,8 @@ COPY . .
 
 ENV PATH="${PATH}:/kaniko/kaniko/"
 
+# ENV IN_TOTO_LINK_CMD_EXEC_TIMEOUT='10000'
+
 RUN apt-get update && apt-get install in-toto -y
 
 RUN apt-get install python3
