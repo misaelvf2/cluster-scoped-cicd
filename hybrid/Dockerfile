@@ -4,7 +4,7 @@ WORKDIR /workdir
 
 COPY . /workdir
 
-RUN ["bazel", "build", "//hello_world:hello_world_sgx_sim"]
+# RUN ["bazel", "build", "//hello_world:hello_world_sgx_sim"] COMMENTED OUT DURING TESTING
 
 # RUN ["bazel", "run", "//hello_world:hello_world_sgx_sim", "--", "--names=Misael"]
 
