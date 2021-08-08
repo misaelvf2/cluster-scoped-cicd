@@ -11,8 +11,8 @@ spec:
       type: string
       description: |
         The path to the image to replace in the yaml manifest (arg to yq)
-  workspaces:
-    - name: input
+  # workspaces:
+  #   - name: input
   resources:
     inputs:
       - name: source
@@ -20,11 +20,11 @@ spec:
       - name: image
         type: image
   steps:
-    - name: test-in-toto
-      image: bash:latest
-      script: |
-        #!/usr/bin/env bash
-        ls $(workspaces.input.path)
+    # - name: test-in-toto
+    #   image: bash:latest
+    #   script: |
+    #     #!/usr/bin/env bash
+    #     ls $(workspaces.input.path)
     - name: replace-image
       image: mikefarah/yq:3.4.1
       command: ["yq"]

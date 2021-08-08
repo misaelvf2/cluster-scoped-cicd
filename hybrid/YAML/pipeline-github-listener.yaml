@@ -58,20 +58,20 @@ spec:
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
-        generateName: secure-pipeline-run-
+        generateName: secure-pipelines-run-
       spec:
         serviceAccountName: registry-sa
         pipelineRef:
           name: secure-pipeline
         workspaces:
-          - name: in-toto-ws
-            volumeClaimTemplate:
-              specs:
-                accessModes:
-                  - ReadWriteOnce
-                resources:
-                  requests:
-                    storage: 1Gi
+          - name: ws
+            # volumeClaimTemplate:
+            #   specs:
+            #     accessModes:
+            #       - ReadWriteMany
+            #     resources:
+            #       requests:
+            #         storage: 1Gi
         resources:
           - name: source-repo
             resourceRef:
