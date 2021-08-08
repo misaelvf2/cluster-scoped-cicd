@@ -63,6 +63,15 @@ spec:
         serviceAccountName: registry-sa
         pipelineRef:
           name: secure-pipeline
+        workspaces:
+          - name: in-toto-ws
+            volumeClaimTemplate:
+              specs:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
         resources:
           - name: source-repo
             resourceRef:
