@@ -1,0 +1,17 @@
+FROM gcr.io/kaniko-project/executor:latest as kaniko
+
+FROM ubuntu:latest
+
+COPY --from=kaniko / /kaniko
+
+WORKDIR /
+
+COPY . .
+
+ENV PATH="${PATH}:/kaniko/kaniko/"
+
+RUN apt-get update && apt-get install in-toto -y
+
+# ENTRYPOINT ["in-toto-run", "--step-name", "build_push", "--key", "build_push", "--", "executor"]
+
+# CMD ["Dockerfile"]
