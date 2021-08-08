@@ -1,0 +1,114 @@
+{
+ "signatures": [
+  {
+   "keyid": "0bf0513af6842f432772d35f7516dad01f90edad1f32891cebadf892b8710202",
+   "sig": "7f39441bcab2770de558af564de0563bcb2e547cfa00faff4ba787e62d0682927fbd1136b1e1c1ece47779257329077598dbb7c71cdff38f0930e3c2e08b4494d73f1a60f68e78322bd2b5927df845bcc2f9862fdfd62078f6eff48b64473deebe1425a5c1133e2906e05f02d48f5559b7952e2320420e050937a811ea0703c89d7cd05ce20ff70d0e07b85e25df053cde00c14c954500da7eeb201745853eed67a1322e3e27287044364e7f4e546f6e5e51afa79bf9fefbca96e201563e26c3ba07eeba0a9de51458075e0d74c237747858e2f49b2af17822943724ee69be32c0307bd873f3b7525ae187f1806c628c6b8275ec5152a5e644cd42d1f018eb583f89eb15767c3da212ebcefc82cf9c32568447b010aa82e0a9a2abf40dd8f4bca0c46ed2343ed4fb7caef05ebb0a11bac475627aeaca9cc3da42f0d7abbcea6ea9b6f6229f02908181d325479b4d2f9a54e73d2ac3ac277b57e53c433ecf83e9d1b0bf7ab38c21df13142fa9f253a8b3a0126521188602e06556723f4aa486db"
+  }
+ ],
+ "signed": {
+  "_type": "layout",
+  "expires": "2021-12-08T01:39:08Z",
+  "inspect": [
+   {
+    "_type": "inspection",
+    "expected_materials": [
+     [
+      "MATCH",
+      "hello_world.tar.gz",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "package"
+     ]
+    ],
+    "expected_products": [
+     [
+      "MATCH",
+      "hello_world/foo.py",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "update-version"
+     ]
+    ],
+    "name": "untar",
+    "run": [
+     "tar",
+     "xzf",
+     "hello_world.tar.gz"
+    ]
+   }
+  ],
+  "keys": {
+   "ebbb84c254df60b4c348e52e9f5aad96c814e98061ae72665d87e2da13cc6537": {
+    "keyid": "ebbb84c254df60b4c348e52e9f5aad96c814e98061ae72665d87e2da13cc6537",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAxtEXvyo/uAjVLd1R7B3n\nJHMJx4BduYov1W5AMcElefX3wZSNa5OHM4XechmjXr+zgrj9zGq3qLQrIwkjOKHq\nvnans0Za0ns0Sv9+wN3B1BzXML4rD0J+8oTsnHJ/+fYmLPBIOYICtlFL1avxiEOV\nXoHaOidrbcEBlrtmfJiLfcajBvqc8A5d/h75UBpepkry3x2NR4sy/7fVxUfpWBDk\n7N48EqXEr2sT+VhFNLE2B4oOocC7NAl2pCRq/JG20dwHYY4LUivislbX3Kat2bnt\nVz4MhtkYHm75/UseWlBxDeFOXledcq9w1T7Gtft/lTJmEy8pV4t4etCfJSCv2gEb\njrkS398idXFWgGpgJvBzE2QIeKoIapbK+OlgKT8VAUcoRsLbz7mA6/u3l8zVrj+M\nIAo+nz/+iCgHVaqVFlJeVmmttiXwbl2TyBQgXIDbCiUc4CDVSF+lmBTPWan+fP67\nUiG84+1Pme7v9+mGOlr2fnXbusRrWn7PZ2PvhKmdG+eVAgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   }
+  },
+  "readme": "",
+  "steps": [
+   {
+    "_type": "step",
+    "expected_command": [
+     "/kaniko/executor"
+    ],
+    "expected_materials": [],
+    "expected_products": [],
+    "name": "build_push",
+    "pubkeys": [
+     "ebbb84c254df60b4c348e52e9f5aad96c814e98061ae72665d87e2da13cc6537"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [
+     "tar",
+     "--exclude",
+     ".git",
+     "-zcvf",
+     "hello_world.tar.gz",
+     "hello_world"
+    ],
+    "expected_materials": [
+     [
+      "MATCH",
+      "hello_world/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "update-version"
+     ],
+     [
+      "DISALLOW",
+      "*"
+     ]
+    ],
+    "expected_products": [
+     [
+      "CREATE",
+      "hello_world.tar.gz"
+     ],
+     [
+      "DISALLOW",
+      "*"
+     ]
+    ],
+    "name": "package",
+    "pubkeys": [
+     "ebbb84c254df60b4c348e52e9f5aad96c814e98061ae72665d87e2da13cc6537"
+    ],
+    "threshold": 1
+   }
+  ]
+ }
+}
