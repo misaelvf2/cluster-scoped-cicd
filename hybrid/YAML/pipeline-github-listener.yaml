@@ -63,8 +63,8 @@ spec:
         serviceAccountName: registry-sa
         pipelineRef:
           name: secure-pipeline
-        workspaces:
-          - name: ws
+        # workspaces:
+        #   - name: ws
             # volumeClaimTemplate:
             #   specs:
             #     accessModes:
