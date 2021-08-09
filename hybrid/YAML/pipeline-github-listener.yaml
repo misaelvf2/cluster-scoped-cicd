@@ -60,15 +60,15 @@ spec:
       metadata:
         generateName: secure-pipeline-run-
       spec:
-        workspaces:
-          - name: ws
-            volumeClaimTemplate:
-              specs:
-                accessModes:
-                  - ReadWriteMany
-                resources:
-                  requests:
-                    storage: 1Gi
+        # workspaces:
+        #   - name: ws
+        #     volumeClaimTemplate:
+        #       specs:
+        #         accessModes:
+        #           - ReadWriteMany
+        #         resources:
+        #           requests:
+        #             storage: 1Gi
         serviceAccountName: registry-sa
         pipelineRef:
           name: secure-pipeline
