@@ -18,6 +18,7 @@ owner_key = import_rsa_privatekey_from_file(owner_path)
 # Carl will generate when carrying out their respective tasks.
 # Bob and Carl will each require their private key when creating link metadata
 # for a step.
+developer_path = generate_and_write_rsa_keypair(filepath="developer")
 build_push_path = generate_and_write_rsa_keypair(filepath="build_push")
 
 
@@ -28,6 +29,7 @@ layout = Layout()
 # Since the functionaries public keys are embedded in the layout, they don't
 # need to be added separately for final product verification, as a consequence
 # the layout serves as functionary PKI.
+developer_pubkey = layout.add_functionary_key_from_path(developer_path + ".pub")
 build_push_pubkey = layout.add_functionary_key_from_path(build_push_path + ".pub")
 
 # Set expiration date so that the layout will expire in 4 months from now.
@@ -58,19 +60,22 @@ layout.set_relative_expiration(months=4)
 # generate signed link metadata file, which provides the required information
 # to verify the supply chain of the final product.
 # The link metadata file must have the name "clone.<bob's keyid prefix>.link"
+step_develop = Step(name="develop")
+step_develop.pubkeys = [developer_pubkey["keyid"]]
 
 step_build_push = Step(name="build_push")
 step_build_push.pubkeys = [build_push_pubkey["keyid"]]
 
 # Note: In general final product verification will not fail but only warn if
 # the expected command diverges from the command that was actually used.
+step_develop.add_product_rule_from_string("ALLOW hello_world/hello_enclave.cc")
+step_develop.add_product_rule_from_string("DISALLOW *")
 
-step_build_push.set_expected_command_from_string(
-    "/kaniko/executor")
+step_build_push.set_expected_command_from_string("--skip-tls-verify --dockerfile=Dockerfile \
+        --destination=misaelvf2/cloud-sec --context=https://github.com/misaelvf2/cluster-scoped-cicd/hybrid --build-arg=BASE=alpine:3")
 
 # step_clone.add_product_rule_from_string("CREATE demo-project/foo.py")
 # step_clone.add_product_rule_from_string("DISALLOW *")
-
 
 # The following step does not expect a command, since modifying the source
 # code might not be reflected by a single command. However, final product
@@ -92,23 +97,20 @@ step_build_push.set_expected_command_from_string(
 # step_update.add_product_rule_from_string("ALLOW demo-project/foo.py")
 # step_update.add_product_rule_from_string("DISALLOW *")
 
-
 # Below step must be carried by Carl and expects a link file with the name
 # "package.<carl's keyid prefix>.link"
 
-step_package = Step(name="package")
-step_package.pubkeys = [build_push_pubkey["keyid"]]
+# step_package = Step(name="package")
+# step_package.pubkeys = [build_push_pubkey["keyid"]]
 
-step_package.set_expected_command_from_string(
-    "tar --exclude '.git' -zcvf hello_world.tar.gz hello_world")
+# step_package.set_expected_command_from_string(
+#     "tar --exclude '.git' -zcvf hello_world.tar.gz hello_world")
 
-step_package.add_material_rule_from_string(
-    "MATCH hello_world/* WITH PRODUCTS FROM update-version")
-step_package.add_material_rule_from_string("DISALLOW *")
-step_package.add_product_rule_from_string("CREATE hello_world.tar.gz")
-step_package.add_product_rule_from_string("DISALLOW *")
-
-
+# step_package.add_material_rule_from_string(
+#     "MATCH hello_world/* WITH PRODUCTS FROM update-version")
+# step_package.add_material_rule_from_string("DISALLOW *")
+# step_package.add_product_rule_from_string("CREATE hello_world.tar.gz")
+# step_package.add_product_rule_from_string("DISALLOW *")
 
 # Create inspection
 
@@ -120,16 +122,15 @@ step_package.add_product_rule_from_string("DISALLOW *")
 
 inspection = Inspection(name="untar")
 
-inspection.set_run_from_string("tar xzf hello_world.tar.gz")
+# inspection.set_run_from_string("tar xzf hello_world.tar.gz")
 
-inspection.add_material_rule_from_string(
-    "MATCH hello_world.tar.gz WITH PRODUCTS FROM package")
-inspection.add_product_rule_from_string(
-    "MATCH hello_world/foo.py WITH PRODUCTS FROM update-version")
-
+# inspection.add_material_rule_from_string(
+#     "MATCH hello_world.tar.gz WITH PRODUCTS FROM package")
+# inspection.add_product_rule_from_string(
+#     "MATCH hello_world/foo.py WITH PRODUCTS FROM update-version")
 
 # Add steps and inspections to layout
-layout.steps = [step_build_push, step_package]
+layout.steps = [step_develop, step_build_push]
 layout.inspect = [inspection]
 
 
