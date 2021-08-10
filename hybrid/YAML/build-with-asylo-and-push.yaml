@@ -14,8 +14,8 @@ spec:
         The build context used by Kaniko
         (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
       default: $(resources.inputs.docker-source.path)
-  # workspaces:
-  #   - name: output
+  workspaces:
+    - name: output
   resources:
     inputs:
       - name: docker-source
@@ -35,6 +35,7 @@ spec:
         #!/usr/bin/env bash
         in-toto-run -s --verbose -n build_push --key build_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
         --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
+        cp *.link $(workspaces.output.path)/link
       # command: ["in-toto-run", "-n", "build_push", "--key", "build_push", "--metadata-directory", "$(workspaces.messages.path)/message", "--", "executor"]
       # command:
       #   - /kaniko/executor

@@ -3,8 +3,8 @@ kind: Pipeline
 metadata:
   name: secure-pipeline
 spec:
-  # workspaces:
-  #   - name: ws
+  workspaces:
+    - name: ws
   resources:
     - name: source-repo
       type: git
@@ -14,14 +14,14 @@ spec:
     - name: secure-build
       taskRef:
         name: build-with-asylo-and-push
+      workspaces:
+        - name: output
+          workspace: ws
       params:
         - name: pathToDockerFile
           value: Dockerfile
         - name: pathToContext
           value: /workspace/docker-source/hybrid
-      # workspaces:
-      #   - name: output
-      #     workspace: in-toto-ws
       resources:
         inputs:
           - name: docker-source
@@ -32,9 +32,9 @@ spec:
     - name: secure-deploy
       taskRef:
         name: deploy-using-kubectl
-      # workspaces:
-      #   - name: input
-      #     workspace: in-toto-ws
+      workspaces:
+        - name: input
+          workspace: ws
       resources:
         inputs:
           - name: source

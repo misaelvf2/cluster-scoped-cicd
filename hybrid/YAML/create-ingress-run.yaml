@@ -13,7 +13,7 @@ spec:
   - name: CertificateSecretName
     value: ingresssecret
   - name: ExternalDomain
-    value: 91affcea125e.ngrok.io
+    value: aefaff8b3042.ngrok.io
   - name: Service
     value: el-github-listener
   - name: ServicePort
