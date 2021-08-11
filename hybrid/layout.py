@@ -71,8 +71,8 @@ step_build_push.pubkeys = [build_push_pubkey["keyid"]]
 step_develop.add_product_rule_from_string("ALLOW hello_world/hello_enclave.cc")
 step_develop.add_product_rule_from_string("DISALLOW *")
 
-step_build_push.set_expected_command_from_string("--skip-tls-verify --dockerfile=Dockerfile \
-        --destination=misaelvf2/cloud-sec --context=https://github.com/misaelvf2/cluster-scoped-cicd/hybrid --build-arg=BASE=alpine:3")
+step_build_push.set_expected_command_from_string("executor --skip-tls-verify --dockerfile=Dockerfile \
+        --destination=misaelvf2/cloud-sec --context=/workspace/docker-source/hybrid --build-arg=BASE=alpine:3")
 
 # step_clone.add_product_rule_from_string("CREATE demo-project/foo.py")
 # step_clone.add_product_rule_from_string("DISALLOW *")

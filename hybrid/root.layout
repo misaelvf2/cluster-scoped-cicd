@@ -1,13 +1,13 @@
 {
  "signatures": [
   {
-   "keyid": "edbeb4c7985f5c767f9fd03d6d82d5275c26877bed14fa51e848970dd4552199",
-   "sig": "7189e84a3ad9cb41d03fcfe8e7f16f31637b8ebeeee1a131d092fa5b88b2a0d29f96957a2ad39262081cc7d2c713978b50407b2f852c63c77c621d80b37a2155cff2fea371c0b9e277a0ef2438ca63bbb1adf69cf490db4b8777e4fa169b9ba693cc7bec8cd9df10cce5c9cf147bb11ae5269623ebb6c4cf6ccf352739743b0a6d760ae1b00e00cfe000edf4a22c84a1a15ac8e73847cd698dc82dc87a0908135336bca1dd5ce4292562a2dadec106881b7649850cee4b9e3bf1dce0185f55c847ef37bf7b1ff25f22d676c3e042e4248d0a1daf47f82761fac896e08f693f85ebe656c5b6f0f20000278772157c2e9d21cda88fbb721d4078f2a06362f779f3d712a07f203b53329d43b44a6aef3e1ba76b5b972004b2cfdb5545e7dcd7d19f20e32215ed0a2f914dab59a1430c622270f0dfa793a1d81cd905ba8549026e978a3a44d12b5a36aaeaa891dbcb31587639ef8342e100a985485b96a03e161c7b5012ece075fb5a3663ba7f6f7107f283dde110e6eefb87a94ff859174ffe339d"
+   "keyid": "db12bebfefefc420f79c7f5d33cba0829606affac50241cdd238d0d22aa357d3",
+   "sig": "521c47a986cfbc614c6638624a3c4047703f26e1042dea6841184fc63899385cc5c81b5e4fd53cf37a502875f3fd489565001308a789d7688a57af8c38f4df321234b312502980039cded2acdf5b9f0584773f3d9a0e9267a0f59e48ee75219ce72a382de6af2bd4b825fa7f54663c2e876c25126c6e006119032e96f74c9c114150d023e55443bf50bfb20e201f6dfd2c2ac2f2b2bab1fca4abd22f2fef7e589b3ba687a07ed21d831dbffd79b9a0ebf31b42e00c3c0ae47cc517751e593a5f969799629dfd3cc07bc505c90a2f1489509453b08c9c694f93befeeba733f7d89e1a506762f2a429e77b3998a43168e2c119b1ad80b707514a273300c5c163b2db4292f30a71930b808d4cdb1ad6b5dc202b5443cac3aeeb5e621cc0c921e6cb670fba1649fc6602bcd45c822ce55208ba1c48d5bb89d036e3b2f419a9d143bff92bb86f65876ebff9dc8b30756c98ebaa761ac1ae19bfec6ff44b223c420a653f04cf4d1a195553658436f3b603c9fca660cdfdab909f93a0bff569e1dad15a"
   }
  ],
  "signed": {
   "_type": "layout",
-  "expires": "2021-12-10T02:05:57Z",
+  "expires": "2021-12-11T01:42:25Z",
   "inspect": [
    {
     "_type": "inspection",
@@ -18,8 +18,8 @@
    }
   ],
   "keys": {
-   "1770fb709e007a54805e619bbb804b4fad0819a7a84fbd1b0e64750e2dbb588e": {
-    "keyid": "1770fb709e007a54805e619bbb804b4fad0819a7a84fbd1b0e64750e2dbb588e",
+   "46e25dabda4452b8431dbf15f336f0f772914a45e992764c957faf85eaede4bb": {
+    "keyid": "46e25dabda4452b8431dbf15f336f0f772914a45e992764c957faf85eaede4bb",
     "keyid_hash_algorithms": [
      "sha256",
      "sha512"
@@ -27,12 +27,12 @@
     "keytype": "rsa",
     "keyval": {
      "private": "",
-     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAz5/i9OYqiSf4Ebx48URf\n/Euw8b2OGwxjbdvsNMNKYu6Dp5K9XpRNtsNRROY4NiRsTWmm8mp2IvXK9hIFskjy\ntgLQCfTlizQ5c0AK5mnrKbStAgCh2yFMoifJRvV61bJ3QpDG7aHCXV+zgTa5b+3f\nEI3prhYQJ+gtcEfW9ppm27YLhF8UAxERBS8B+wXKTxgGbKD36RoYt9VA6waMDlHH\nbLahhuKA3/B3D4x9MwNFdfhuKWUkPdqOK29nQ2C3cCkOqBrzbqwB55muxZwWR0tG\nEyaJodcImks3euuvvQ2uPnnzQ5YnBIfZ99Zkz4yUJcHHQBcNkQAP9JMuJQmBy29k\nZ0ZuIjIPgxkcABD3g/66RIDp9p/JIZu4AmNPboVHsM2uhSTIeAiPaGLQCk+kRcvV\nr4EAV1opWGigWHBKqx6F9auUoUKrVDbLrYIihoCsE2mesf3kDsMZxetzEj9Jm7/5\nyE/StdNU0UnNWvayDQcapRqVcYGiUvU7FAdfTTtQ9TQ7AgMBAAE=\n-----END PUBLIC KEY-----"
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt5gt44oYGTDgPI3RxSPN\n19Xc9xMoKtCE01+Nk2pwIB3T58cMsijjgRDsUsxBJWkbWAwhJ4eaXHufVvB0xXC2\npjXCyr4xTr4Eet4IDPDFDwDOjGRVJ2gysDNjbs01lwsx/7oqA02wzOuMsAXb6LQY\nbdE2pRq+4aKWgoaaegVXYHUf9lXlxfiPNrOz4vZ7H4BJ358qmTAzQzxsxbq1zrTb\nDtaDaHHh2j/kkbXCOU4H74gbgwl4Gr+92Xwoq6VrS5o6U0o/CvTEi1d6LjISiGAZ\ng9DKYonCohuXJ/EJ6y9Y05u/Farn2H1B/WtOtQrHW/IZRb6f2KDTLDmDdTS73Hle\nEehWLB8+kb2pdSwafPeGvjRnPrK2m76g5nCiolOYN6IuH3oDjMWZt2GtL12boPvx\nwDJyn+RjlXtaN9eXTAsf6RUIQyqe8saVXTRNF56cId7t6aDn7VNOV4gOGKYTIVBh\nrXAGphX9KLzqutfMroBy0Vh/kwtNXpZkjP4vDppovlf9AgMBAAE=\n-----END PUBLIC KEY-----"
     },
     "scheme": "rsassa-pss-sha256"
    },
-   "6673610e2709e42f806271959bac96d54f8d34385e55c334d6ac3a17a7387e77": {
-    "keyid": "6673610e2709e42f806271959bac96d54f8d34385e55c334d6ac3a17a7387e77",
+   "bd562add2a5a1288e5d45aa50bea57b2863fb635b942f0dac7f1c0da81f0427f": {
+    "keyid": "bd562add2a5a1288e5d45aa50bea57b2863fb635b942f0dac7f1c0da81f0427f",
     "keyid_hash_algorithms": [
      "sha256",
      "sha512"
@@ -40,7 +40,7 @@
     "keytype": "rsa",
     "keyval": {
      "private": "",
-     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAo3CIE9cDPc5PnHfF2DTG\nmoN/YhZQWYx+1hje/uPRZgl145lJ53cWHQhsWaESFoCtUkvPhrFIqmrfKhQXSDkH\ntyH618cqmMZ/kvZPLMxi2CDhPaySMEHFzZxtqwSU2BLJ79CKwmnSiJDhyvNuZt2+\n1/Jymx26RVYRw7qwkEvBh2FIpo/kbmB3aqp1XLNLckaDwj97Mnyu9/y8YEie8oJL\n/R6EdbTpGxV8m+qRvXOcvl+RgSRUsrKQ8tUosUwgVlncB+7rGB0Rj46H7sCeEbBJ\nT6AnHjHty0UJD06YY9fTidZnFP6j8XBjWTwniHsN3GUcH10emrWLDCGqT3rIBgt0\nIx9culek/kGvJfmt0qE3jASx19G+nzp1IKYBcjm12+3FOlAx40nkiuKwxB4ys0xe\ntrZch/jW7xS0KACeF2JqKAfwjIJskxQZGEAo03eyz6jM28KZTAGYNDSGLghdw6LT\np/ojh5O3KAAVsOfK317MmP3V31J8IV5C5shYS6S+TQd7AgMBAAE=\n-----END PUBLIC KEY-----"
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAt0O+2Q+fVuJFXgcMxmtE\ntWq2sdFQLMMLKKq3wG8Il79Gm5ANLDy9uuOKDm4ZLQRi9rFXKAr9zLYQ6EV2c1u8\nfIfIV2fsGvIxsKtU4dUdxbP+HfmyrisI1Oc3ED3oLRiBlZ0sKrOhVJgJRocZi/mr\nbhnPe9ByyQkwK/WMDWULJoq/Xy/AuGmQlTvkZn4f6IRacv2oHFlue6igQ/NjHXU5\niPaO4GUdoAN7VKNcWt9ZHglr3V7jchvVwVUhsogJRELgc+FhUUJU/QVS4Y8jBEKV\n6PirK+FBP02IMAguOJcUkda7Rcl360y+wmbAh5725GIPFTOFRSioxq9n0vQhGSUg\nwjAewlGpHdUDDJtAcNaBrBkBuOulNK8EDbeiig2f6y0zFnEL06Ak66IG77pGaQEg\noowyA1EVA/a5AVj9LOqoMdFtKYdxD7K+Sn+Dxyrsri2AroUVxq+3WX7GarbhRneH\navgGvgDo9HdmY1kTV+9OH/Cycrep20/e9jLqMTdQT1ibAgMBAAE=\n-----END PUBLIC KEY-----"
     },
     "scheme": "rsassa-pss-sha256"
    }
@@ -63,24 +63,25 @@
     ],
     "name": "develop",
     "pubkeys": [
-     "1770fb709e007a54805e619bbb804b4fad0819a7a84fbd1b0e64750e2dbb588e"
+     "46e25dabda4452b8431dbf15f336f0f772914a45e992764c957faf85eaede4bb"
     ],
     "threshold": 1
    },
    {
     "_type": "step",
     "expected_command": [
+     "executor",
      "--skip-tls-verify",
      "--dockerfile=Dockerfile",
      "--destination=misaelvf2/cloud-sec",
-     "--context=https://github.com/misaelvf2/cluster-scoped-cicd/hybrid",
+     "--context=/workspace/docker-source/hybrid",
      "--build-arg=BASE=alpine:3"
     ],
     "expected_materials": [],
     "expected_products": [],
     "name": "build_push",
     "pubkeys": [
-     "6673610e2709e42f806271959bac96d54f8d34385e55c334d6ac3a17a7387e77"
+     "bd562add2a5a1288e5d45aa50bea57b2863fb635b942f0dac7f1c0da81f0427f"
     ],
     "threshold": 1
    }

@@ -7,12 +7,15 @@ spec:
     - name: metadata
   steps:
     - name: verify
-      image: misaelvf2/kaniko-in-toto
+      image: misaelvf2/in-toto
       env:
         - name: "DOCKER_CONFIG"
           value: "/tekton/home/.docker/"
       script: |
         #!/usr/bin/env bash
-        cp $(workspaces.input.path)/link .
+        cp $(workspaces.metadata.path)/build_push.6673610e.link .
+        cp $(workspaces.metadata.path)/develop.1770fb70.link .
         ls
+        cat build_push.6673610e.link
+        cat develop.1770fb70.link
         in-toto-verify --layout root.layout --layout-key owner.pub
