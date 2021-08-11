@@ -26,10 +26,10 @@ spec:
         #!/usr/bin/env bash
         echo "WORKSPACE START ------------------------------"
         ls $(workspaces.input.path)/build_push.6673610e.link
-        ls $(workspaces.input.path)/develop.1770fb70.link
+        ls $(workspaces.input.path)/develop.46e25dab.link
         echo "WORKSPACE END ------------------------------"
         cat $(workspaces.input.path)/build_push.6673610e.link
-        cat $(workspaces.input.path)/develop.1770fb70.link
+        cat $(workspaces.input.path)/develop.46e25dab.link
     - name: replace-image
       image: mikefarah/yq:3.4.1
       command: ["yq"]

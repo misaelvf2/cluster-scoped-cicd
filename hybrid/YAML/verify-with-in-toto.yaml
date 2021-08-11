@@ -14,7 +14,7 @@ spec:
       script: |
         #!/usr/bin/env bash
         cp $(workspaces.metadata.path)/build_push.6673610e.link .
-        cp $(workspaces.metadata.path)/develop.1770fb70.link .
+        cp $(workspaces.metadata.path)/develop.46e25dab.link .
         ls
         cat build_push.6673610e.link
         cat develop.1770fb70.link

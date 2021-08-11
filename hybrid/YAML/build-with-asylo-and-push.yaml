@@ -38,7 +38,7 @@ spec:
         --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
         ls
         cp build_push.*.link $(workspaces.output.path)/build_push.6673610e.link
-        cp cluster-scoped-cicd/hybrid/develop.*.link $(workspaces.output.path)/develop.1770fb70.link
+        cp cluster-scoped-cicd/hybrid/develop.*.link $(workspaces.output.path)/develop.46e25dab.link
       # command: ["in-toto-run", "-n", "build_push", "--key", "build_push", "--metadata-directory", "$(workspaces.messages.path)/message", "--", "executor"]
       # command:
       #   - /kaniko/executor
