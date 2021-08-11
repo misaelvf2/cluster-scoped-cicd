@@ -122,7 +122,7 @@ step_build_push.set_expected_command_from_string("executor --skip-tls-verify --d
 
 inspection = Inspection(name="untar")
 
-# inspection.set_run_from_string("tar xzf hello_world.tar.gz")
+inspection.set_run_from_string("tar xzf hello_world.tar.gz")
 
 # inspection.add_material_rule_from_string(
 #     "MATCH hello_world.tar.gz WITH PRODUCTS FROM package")
