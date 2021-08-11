@@ -13,9 +13,8 @@ spec:
           value: "/tekton/home/.docker/"
       script: |
         #!/usr/bin/env bash
-        cp $(workspaces.metadata.path)/build_push.bd562add.link .
-        cp $(workspaces.metadata.path)/develop.46e25dab.link .
+        cp $(workspaces.metadata.path)/hello_world.tar.gz
         ls
         cat build_push.bd562add.link
-        cat develop.1770fb70.link
+        cat develop.88a5704a.link
         in-toto-verify --layout root.layout --layout-key owner.pub
