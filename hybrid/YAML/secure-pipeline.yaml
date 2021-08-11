@@ -48,3 +48,11 @@ spec:
           value: /workspace/source/hybrid/pod.yaml
         - name: yamlPathToImage
           value: "spec.containers[0].image"
+    - name: verify
+      taskRef:
+        name: verify-with-in-toto
+      workspaces:
+        - name: metadata
+          workspace: ws
+      runAfter:
+        - secure-deploy

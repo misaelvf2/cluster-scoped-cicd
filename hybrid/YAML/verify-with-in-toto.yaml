@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: verify-with-in-toto
+spec:
+  workspaces:
+    - name: metadata
+  steps:
+    - name: verify
+      image: misaelvf2/kaniko-in-toto
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/tekton/home/.docker/"
+      script: |
+        #!/usr/bin/env bash
+        cp $(workspaces.input.path)/link .
+        ls
+        in-toto-verify --layout root.layout --layout-key owner.pub
