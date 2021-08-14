@@ -1,0 +1,25 @@
+{
+ "signatures": [
+  {
+   "keyid": "8a819348a759106b2605932f56162df17a2352304903e7055b1ecc1c57326da7",
+   "sig": "9ba60ba89bdc6ea5efd08895625c35aa61d7bedc99b41638ac24a9769f707353d55e61e5fe48181ce43659250fbb37d0e4b3d7696a6f49cbe609d71574775715103d15de4860e7ce846e93edee29c73f7dafee201bf1c2366d25595020451b757fb5a737d2136a2e4919f1d2d3f36e2a9e69d7fe72d26668a2d9a5fb3890321e761ac8847cd4996cdd4ec091b573bcde49b7bf7c4ae9783060af5d29ab86cd6fe0dbd40829196f22a5da42028249d5026948d7cbd326bf88f7179d421d2244ffccdf1141c29cc5901a3c4b493be0aae69b0f0246a9fade656c5a6e4804d22fcbd14bbe12774597e4ec5b9868d52fb6aa276e282caca15793e4482cf81e6d970f561bfa84ca56c1e127da6394fb8555650f2336cb7d17f609c43407c16b7dbbe795431f74a8512d417526efdd6e2d13a5a0367676747799a9c9303ccd39d70a3caf2f3c6642d22f26a71ede2a5a5798ec836169080c6110678eac446c0942aa10211c511b986a67f1e8854e45e4dd465fa16f6a8fe06df141ecacaf96318a5f12"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 0,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "git",
+   "clone",
+   "https://github.com/misaelvf2/asylo-hello-world.git"
+  ],
+  "environment": {},
+  "materials": {},
+  "name": "develop",
+  "products": {}
+ }
+}
