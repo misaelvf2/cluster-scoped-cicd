@@ -42,7 +42,7 @@ metadata:
 spec:
   params:
     - name: gitrevision
-      value: in-toto-integration
+      value: master
     - name: gitrepositoryurl
       value: $(body.repository.clone_url)
 ---
@@ -70,7 +70,7 @@ spec:
                   - ReadWriteOnce
                 resources:
                   requests:
-                    storage: 1Gi
+                    storage: 2Gi
         serviceAccountName: registry-sa
         resources:
           - name: source-repo

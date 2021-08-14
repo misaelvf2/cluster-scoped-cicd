@@ -4,17 +4,31 @@ metadata:
   name: verify-with-in-toto
 spec:
   workspaces:
-    - name: metadata
+    - name: docker-source
   steps:
-    - name: verify
-      image: misaelvf2/in-toto
+    - name: copy-over
+      image: misaelvf2/kaniko-in-toto
       env:
         - name: "DOCKER_CONFIG"
           value: "/tekton/home/.docker/"
       script: |
         #!/usr/bin/env bash
-        cp $(workspaces.metadata.path)/hello_world.tar.gz
         ls
-        cat build_push.bd562add.link
-        cat develop.88a5704a.link
-        in-toto-verify --layout root.layout --layout-key owner.pub
+        echo "ORIGINAL LISTING ----------------------------"
+        cp -r $(workspaces.docker-source.path)/asylo-hello-world.tar.gz .
+        tar xzf asylo-hello-world.tar.gz
+        cp $(workspaces.docker-source.path)/root.layout .
+        cp $(workspaces.docker-source.path)/owner.pub .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep clone.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep modify.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep build_and_push.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep package.*.link) .
+        ls -l
+        cat package.def9261b.link
+    - name: verify
+      image: misaelvf2/kaniko-in-toto
+      script: |
+        #!/usr/bin/env bash
+        ls -l $(workspaces.docker-source.path)
+        cat $(workspaces.docker-source.path)/root.layout
+        in-toto-verify --verbose --layout $(workspaces.docker-source.path)/root.layout --layout-key $(workspaces.docker-source.path)/owner.pub --link-dir $(workspaces.docker-source.path)

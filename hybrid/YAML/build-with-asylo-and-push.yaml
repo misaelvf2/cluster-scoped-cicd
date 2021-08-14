@@ -6,7 +6,7 @@ spec:
   params:
     - name: pathToDockerFile
       type: string
-      description: The path to the dockerfile to build
+      description: The path to the Dockerfile to build
       default: $(resources.inputs.docker-source.path)/Dockerfile
     - name: pathToContext
       type: string
@@ -15,7 +15,7 @@ spec:
         (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
       default: $(resources.inputs.docker-source.path)
   workspaces:
-    - name: output
+    - name: link-metadata
   resources:
     inputs:
       - name: docker-source
@@ -25,22 +25,33 @@ spec:
         type: image
   steps:
     - name: build-and-push
-      # image: gcr.io/kaniko-project/executor:latest
       image: misaelvf2/kaniko-in-toto
-      # specifying DOCKER_CONFIG is required to allow kaniko to detect docker credential
       env:
         - name: "DOCKER_CONFIG"
           value: "/tekton/home/.docker/"
+        - name: "IN_TOTO_LINK_CMD_EXEC_TIMEOUT"
+          value: "9999999"
       script: |
         #!/usr/bin/env bash
-        git clone -b in-toto-integration https://github.com/misaelvf2/cluster-scoped-cicd
-        cd /cluster-scoped-cicd/hybrid
-        in-toto-run -s --verbose -n build_push --key build_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
+        ls /workspace/docker-source
+        in-toto-run -s --verbose -n build_and_push --materials /workspace/docker-source/* --key /workspace/docker-source/build_and_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
         --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
-        tar -zcvf hello_world.tar.gz .
-        cp hello_world.tar.gz $(workspaces.output.path)/hello_world.tar.gz
-        cp build_push.*.link $(workspaces.output.path)/build_push.bd562add.link
-        cp develop.*.link $(workspaces.output.path)/develop.88a5704a.link
+        cp /workspace/docker-source/clone.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep clone.*.link)
+        cp /workspace/docker-source/modify.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep modify.*.link)
+        cp build_and_push.*.link $(workspaces.link-metadata.path)/$(ls | grep build_and_push.*.link)
+        cp /workspace/docker-source/root.layout $(workspaces.link-metadata.path)/root.layout
+        cp /workspace/docker-source/owner.pub $(workspaces.link-metadata.path)/owner.pub
+    - name: package
+      image: misaelvf2/in-toto
+      env:
+        - name: "IN_TOTO_LINK_CMD_EXEC_TIMEOUT"
+          value: "9999999"
+      script: |
+        #!/usr/bin/env bash
+        in-toto-run -s --verbose -n package --materials /workspace/docker-source/* --products asylo-hello-world.tar.gz \
+         --key /workspace/docker-source/build_and_push -- tar --exclude ".git" -zcvf asylo-hello-world.tar.gz /workspace/docker-source/
+        cp asylo-hello-world.tar.gz $(workspaces.link-metadata.path)/asylo-hello-world.tar.gz
+        cp package.*.link $(workspaces.link-metadata.path)/$(ls | grep package.*link)
       # command: ["in-toto-run", "-n", "build_push", "--key", "build_push", "--metadata-directory", "$(workspaces.messages.path)/message", "--", "executor"]
       # command:
       #   - /kaniko/executor
@@ -49,3 +60,21 @@ spec:
       #   - --destination=$(resources.outputs.builtImage.url)
       #   - --context=$(params.pathToContext)
       #   - --build-arg=BASE=alpine:3
+
+
+        #!/usr/bin/env bash
+        # git clone https://github.com/misaelvf2/asylo-hello-world.git
+        # ls
+        # in-toto-run -s --verbose -n build_and_push --materials asylo-hello-world/* --key asylo-hello-world/build_and_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
+        # --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
+        # echo "----------------------------"
+        # ls
+        # in-toto-run --version
+        # echo "----------------------------"
+        # in-toto-run -s --verbose -n package --materials asylo-hello-world/* --products asylo-hello-world.tar.gz \
+        #  --key asylo-hello-world/build_and_push -- tar --exclude ".git" -zcvf asylo-hello-world.tar.gz asylo-hello-world
+        # cp asylo-hello-world.tar.gz $(workspaces.link-metadata.path)/asylo-hello-world.tar.gz
+        # echo "----------------------------"
+        # cp asylo-hello-world/develop.*.link $(workspaces.link-metadata.path)/$(ls asylo-hello-world/ | grep develop.*.link)
+        # cp build_and_push.*.link $(workspaces.link-metadata.path)/$(ls | grep build_and_push.*.link)
+        # cp package.*.link $(workspaces.link-metadata.path)/$(ls | grep package.*link)

@@ -1,14 +1,22 @@
+FROM gcr.io/kaniko-project/executor:latest as kaniko
+
 FROM ubuntu:latest
+
+COPY --from=kaniko / /kaniko
 
 WORKDIR /
 
-COPY . .
+# COPY . .
+
+ENV PATH="${PATH}:/kaniko/kaniko/"
 
 # ENV IN_TOTO_LINK_CMD_EXEC_TIMEOUT='10000'
 
-RUN apt-get update && apt-get install in-toto -y
+# RUN apt-get update && apt-get install in-toto -y
 
-RUN apt-get install python3
+RUN apt-get update
+
+RUN apt-get install python3 -y
 
 RUN apt-get install python3-pip -y
 
@@ -25,3 +33,7 @@ WORKDIR /in-toto-1.1.1
 RUN python3 setup.py build && python3 setup.py install
 
 WORKDIR /
+
+# ENTRYPOINT ["in-toto-run", "--step-name", "build_push", "--key", "build_push", "--", "executor"]
+
+# CMD ["Dockerfile"]
