@@ -63,6 +63,9 @@ spec:
         pipelineRef:
           name: secure-pipeline
         workspaces:
+          - name: secret-ws
+            secret:
+              secretName: build-push-key-secret
           - name: ws
             volumeClaimTemplate:
               spec:

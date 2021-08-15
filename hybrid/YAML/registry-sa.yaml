@@ -4,3 +4,4 @@ metadata:
   name: registry-sa
 secrets:
   - name: regcred
+  - name: build-push-key-secret
