@@ -19,7 +19,7 @@ spec:
           workspace: ws
       params:
         - name: pathToDockerFile
-          value: Dockerfile
+          value: /workspace/docker-source/Dockerfile #Dockerfile
         - name: pathToContext
           value: /workspace/docker-source/
       resources:
@@ -40,9 +40,9 @@ spec:
     - name: secure-deploy
       taskRef:
         name: deploy-using-kubectl
-      # workspaces:
-      #   - name: input
-      #     workspace: ws
+      workspaces:
+        - name: input
+          workspace: ws
       resources:
         inputs:
           - name: source

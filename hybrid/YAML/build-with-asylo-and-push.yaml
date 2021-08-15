@@ -33,9 +33,15 @@ spec:
           value: "9999999"
       script: |
         #!/usr/bin/env bash
-        ls /workspace/docker-source
-        in-toto-run -s --verbose -n build_and_push --materials /workspace/docker-source/* --key /workspace/docker-source/build_and_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
+        ls $(params.pathToContext)
+
+        mkdir asylo-hello-world
+        cp -r $(params.pathToContext) asylo-hello-world/
+
+        in-toto-run -s --verbose -n build_and_push --materials asylo-hello-world/hello_world/* \
+        --key /workspace/docker-source/build_and_push -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
         --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
+
         cp /workspace/docker-source/clone.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep clone.*.link)
         cp /workspace/docker-source/modify.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep modify.*.link)
         cp build_and_push.*.link $(workspaces.link-metadata.path)/$(ls | grep build_and_push.*.link)
@@ -48,8 +54,18 @@ spec:
           value: "9999999"
       script: |
         #!/usr/bin/env bash
-        in-toto-run -s --verbose -n package --materials /workspace/docker-source/* --products asylo-hello-world.tar.gz \
-         --key /workspace/docker-source/build_and_push -- tar --exclude ".git" -zcvf asylo-hello-world.tar.gz /workspace/docker-source/
+        echo "ls /workspace/docker-source--------------"
+        ls /workspace/docker-source
+        cat /workspace/docker-source/hello_world/hello_driver.cc
+        echo "----------------------------------"
+
+        mkdir asylo-hello-world
+        cp -r $(params.pathToContext) asylo-hello-world/
+
+        in-toto-run -s --verbose -n package --materials asylo-hello-world/hello_world/* \
+        --products asylo-hello-world.tar.gz --key /workspace/docker-source/build_and_push -- tar \
+        --exclude '.git' -zcvf asylo-hello-world.tar.gz /workspace/docker-source/
+
         cp asylo-hello-world.tar.gz $(workspaces.link-metadata.path)/asylo-hello-world.tar.gz
         cp package.*.link $(workspaces.link-metadata.path)/$(ls | grep package.*link)
       # command: ["in-toto-run", "-n", "build_push", "--key", "build_push", "--metadata-directory", "$(workspaces.messages.path)/message", "--", "executor"]

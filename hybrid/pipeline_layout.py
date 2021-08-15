@@ -41,7 +41,7 @@ step_clone.add_product_rule_from_string("CREATE asylo-hello-world/hello_world/BU
 step_clone.add_product_rule_from_string("CREATE asylo-hello-world/hello_world/hello_driver.cc")
 step_clone.add_product_rule_from_string("CREATE asylo-hello-world/hello_world/hello_enclave.cc")
 step_clone.add_product_rule_from_string("CREATE asylo-hello-world/hello_world/hello.proto")
-step_clone.add_product_rule_from_string("DISALLOW *")
+step_clone.add_product_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
 
 # Developer may carry out any number of commands when modifying source code.
 # These will be captured with the 'in-toto-record' command.
@@ -53,7 +53,7 @@ step_modify.pubkeys = [developer_pubkey["keyid"]]
 # that were the product of the previous 'clone' step.
 step_modify.add_material_rule_from_string(
     "MATCH asylo-hello-world/hello_world/* WITH PRODUCTS FROM clone")
-step_modify.add_material_rule_from_string("DISALLOW *")
+step_modify.add_material_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
 
 # Specify rules for files expected to be created as result of this step.
 # Files will be modified versions of files that were the product of the 'clone' step.
@@ -61,30 +61,37 @@ step_modify.add_product_rule_from_string("ALLOW asylo-hello-world/hello_world/BU
 step_modify.add_product_rule_from_string("ALLOW asylo-hello-world/hello_world/hello_driver.cc")
 step_modify.add_product_rule_from_string("ALLOW asylo-hello-world/hello_world/hello_enclave.cc")
 step_modify.add_product_rule_from_string("ALLOW asylo-hello-world/hello_world/hello.proto")
-step_modify.add_product_rule_from_string("DISALLOW *")
+step_modify.add_product_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
 
 # The build & push Service Account will carry out the build & push
 # task in the pipeline, which will begin with the "build and push" step.
 step_build_and_push = Step(name="build_and_push")
 step_build_and_push.pubkeys = [build_and_push_pubkey["keyid"]]
 
-# Expected command command is the Kaniko executor, with given flags.
+# Expected command is the Kaniko executor, with given flags.
 step_build_and_push.set_expected_command_from_string("executor --skip-tls-verify --dockerfile=Dockerfile \
-        --destination=misaelvf2/cloud-sec --context=/workspace/docker-source/hybrid --build-arg=BASE=alpine:3")
+        --destination=misaelvf2/cloud-sec --context=/workspace/docker-source/ --build-arg=BASE=alpine:3")
 
 # Expected materials are products from the 'modify' step.
 step_build_and_push.add_material_rule_from_string(
     "MATCH asylo-hello-world/hello_world/* WITH PRODUCTS FROM modify")
-step_build_and_push.add_material_rule_from_string("DISALLOW *")
+step_build_and_push.add_material_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
 
 # No expected products from this step.
-step_build_and_push.add_product_rule_from_string("DISALLOW *")
+step_build_and_push.add_product_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
 
 # Build and push will package source code into tar file.
 step_package = Step(name="package")
+step_package.pubkeys = [build_and_push_pubkey["keyid"]]
 
 step_package.set_expected_command_from_string(
     "tar --exclude '.git' -zcvf asylo-hello-world.tar.gz asylo-hello-world")
+
+step_package.add_material_rule_from_string("MATCH asylo-hello-world/hello_world/* WITH PRODUCTS FROM modify")
+step_package.add_material_rule_from_string("DISALLOW asylo-hello-world/hello_world/*")
+
+step_package.add_product_rule_from_string("CREATE asylo-hello-world.tar.gz")
+step_package.add_product_rule_from_string("DISALLOW *")
 
 # Create inspection
 # Need to untar file as first step in inspection.
@@ -101,7 +108,7 @@ inspection.add_product_rule_from_string(
     "MATCH asylo-hello-world/hello_world/* WITH PRODUCTS FROM modify")
 
 # Add steps and inspections to layout
-layout.steps = [step_clone, step_modify, step_build_and_push, step_package]
+layout.steps = [step_clone, step_modify, step_package]
 layout.inspect = [inspection]
 
 metablock = Metablock(signed=layout)
