@@ -1,0 +1,38 @@
+{
+ "signatures": [
+  {
+   "keyid": "c94ad173b252876103289acbc43158fb310a575cd873096fb876c5b2bdafedcc",
+   "sig": "ba82d0e49541f5fd1bf2ec4d2665c247fc8fb2f461b78adb3c18ba56a6a9d10242cd104f8dd6672056145743ed39589d09dc03f4671632f0b85c9456a409e3a1eb359412e1c06748e1d867ab7808d79e9f7ec268e1fad1a4cd90b9c35aaeeda43fbfbe13c72072c1ef3400decda73016dfeccf36591dc123a8aea968ef08685e3e2023deba6227fecf4ed4fb24894d47136021bb12f99756d485a740399ed77459062f11961fb175d536bb17dd16a5688dd3754c744f7daa094bc4f48903fc16ec295b69d403bdab2a2a9f7e16291e5a6a7e0166bdab85ea6510a47e50ee7f61ac2f1f510b6f4cb3dc0bfb68e047fd92bdfd4247a83d04b08de6e9c84ece3402f676cd1b201d565a45405304151ba2e20f370dd8cb5dcc580df001fdd48e60bc8a94fc6d4c6003b3e92aa7b27903c680e8036839b61cbd8aa7910a09847860720895a8cd45e3c310d2eb9d70819d443447007369f98218399afa7098642bfec087f911ba17e159c18ebbe7a0b3b3e98d85fc59acf628772994b7dbf8c2e7a433"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 0,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "git",
+   "clone",
+   "https://github.com/misaelvf2/asylo-hello-world.git"
+  ],
+  "environment": {},
+  "materials": {},
+  "name": "clone",
+  "products": {
+   "asylo-hello-world/hello_world/BUILD": {
+    "sha256": "8426f49f022a62927ae482ce64f2ae32fa3f9741b234043e93b7d4419f2ce5a6"
+   },
+   "asylo-hello-world/hello_world/hello.proto": {
+    "sha256": "dd12674cf018963b957af7b8b5b802f834ea369d7c8c584fd0c81fa442e2180e"
+   },
+   "asylo-hello-world/hello_world/hello_driver.cc": {
+    "sha256": "0dca6d3a5d0c49012ddd97e2e483a5f466fc327ae8d7f4c7c7ac56f30fdf220c"
+   },
+   "asylo-hello-world/hello_world/hello_enclave.cc": {
+    "sha256": "affc8b112e83f8fcdf62ec5869a91a6fe100adc09a0f4815a9e2291bafe35907"
+   }
+  }
+ }
+}
