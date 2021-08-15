@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: secure-pipeline
 spec:
+  workspaces:
+    - name: ws
   resources:
     - name: source-repo
       type: git
@@ -12,11 +14,14 @@ spec:
     - name: secure-build
       taskRef:
         name: build-with-asylo-and-push
+      workspaces:
+        - name: link-metadata
+          workspace: ws
       params:
         - name: pathToDockerFile
-          value: Dockerfile
+          value: /workspace/docker-source/Dockerfile #Dockerfile
         - name: pathToContext
-          value: /workspace/docker-source/hybrid
+          value: /workspace/docker-source/
       resources:
         inputs:
           - name: docker-source
@@ -24,9 +29,20 @@ spec:
         outputs:
           - name: builtImage
             resource: image-registry
+    - name: verify
+      taskRef:
+        name: verify-with-in-toto
+      workspaces:
+        - name: docker-source
+          workspace: ws
+      runAfter:
+        - secure-build
     - name: secure-deploy
       taskRef:
         name: deploy-using-kubectl
+      workspaces:
+        - name: input
+          workspace: ws
       resources:
         inputs:
           - name: source
@@ -37,6 +53,8 @@ spec:
               - secure-build
       params:
         - name: path
-          value: /workspace/source/hybrid/pod.yaml
+          value: /workspace/source/pod.yaml
         - name: yamlPathToImage
           value: "spec.containers[0].image"
+      runAfter:
+        - verify

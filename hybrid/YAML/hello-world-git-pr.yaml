@@ -6,6 +6,6 @@ spec:
   type: git
   params:
     - name: revision
-      value: in-toto
+      value: master
     - name: url
-      value: https://github.com/misaelvf2/cluster-scoped-cicd
+      value: https://github.com/misaelvf2/asylo-hello-world

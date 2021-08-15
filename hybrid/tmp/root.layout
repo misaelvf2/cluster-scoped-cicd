@@ -1,0 +1,195 @@
+{
+ "signatures": [
+  {
+   "keyid": "89121ae56051e706f2575ccb136038c1c569070294991ae43a8d47654ce8d5e4",
+   "sig": "273ef27646e8fead598a0bd120f1d599ebc0118cfda765308433cd13aa9eb17a679ed343dcc5b8a31a9d09dafd1465e19fd35fac5e751e42e51267473a8c1c4f5fdbb44b2aba94f1d99dd6fd4d522c7fd6179e9f8b1eadc28f1a0eb2f3d1116637b6b1afb31eb2f16eed729cd450b44a03d8262bbf156e3f29341ed5c24f8860aa218cbb3c771e09ff8fb1208d42b24b24aa7a5aa82644e47df5558f60569c75329c6294d131126c96d1f367fce09788236c7f5d8f3a60d9d4cb91a0ae8accdf425b20722a279a6762d98f4d7642ea56d4699e3a92783889999d38edafb3386eedc505ae6a498a98239ce80524c859d25a7ffc5e29c63f7424955ce8272e4eaa73cc2add590de89c74205f72d8452afaba0e4d1f89d69b8087490c4f57207b6e5596b5b4932c66a8dbaf08575b2afae216b6885610179792bde999bbb62032e23897d5ffa12a859247887e44340b41d93b2ac9e383d83b77fcb31bfcbecefcbda6f4e1303b9dd09b3b6be8db19d10814598fefb9f0ac7fe50cf69d42049a2fb8"
+  }
+ ],
+ "signed": {
+  "_type": "layout",
+  "expires": "2021-12-15T01:28:56Z",
+  "inspect": [
+   {
+    "_type": "inspection",
+    "expected_materials": [
+     [
+      "MATCH",
+      "asylo-hello-world.tar.gz",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "package"
+     ]
+    ],
+    "expected_products": [
+     [
+      "MATCH",
+      "asylo-hello-world/hello_world/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "modify"
+     ]
+    ],
+    "name": "untar",
+    "run": [
+     "tar",
+     "xzf",
+     "asylo-hello-world.tar.gz"
+    ]
+   }
+  ],
+  "keys": {
+   "b6fe21127fc69260e956b669a961dded5a559e9d56e8a3d67f602b5f7fd84866": {
+    "keyid": "b6fe21127fc69260e956b669a961dded5a559e9d56e8a3d67f602b5f7fd84866",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAzgWI2VL3oXzaxQdYLkvJ\nRoLQd34QJ839qL0R/gP+1CiNo9m0ujo2drSF9FU6oOD4FFcS+e/eInfw6hw/bJNv\nr/dJwl0DWBCLiwGFETCCGXShHhfawrmqtlwPsLM9jB+kb7/DSaYhBnmj4hfvazDo\nxcnb1Wz1Twgkjbztb9TIQ4Lqj+Ru2OUj1mbQPJU8C1easGxl3NIUtYF5ta3eUjW4\nULdWBG6KYsYZbRulELS/nUPhODG7fCHd1RsPDPePgipecNkLrYgI9CUvPhdYx9Me\nwlDCiBHk81uxerxkk51W029jFQ/z2JVJh2Q3937ANeGIUdsGGMfzsuVv53y3+1yf\ncWlZDVOk1jx/HfJI7ZSnsWemxGhazfveJIdLEy3GwKJBpKoYsOHB19eFwhk5Rdml\nJVtzkegpAnrqsFtQl1KXt720PwBVSsWk+gi5Ac2DT+MLnAmP3g+PQh5viijDuW1v\nZlUniofmUmetIJzrQc3gagfzMogp7PU6+GX+p3031Bd1AgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   },
+   "c94ad173b252876103289acbc43158fb310a575cd873096fb876c5b2bdafedcc": {
+    "keyid": "c94ad173b252876103289acbc43158fb310a575cd873096fb876c5b2bdafedcc",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAydQvS9OSCPJ3pHtKWdqD\n70J884bFPsjni5MxXEfasWggkp5tuFNwn1j7E7BokpD03siCTqfkXpfxxgu+k77l\n2AsM7sLC1ExIcZ6w2L4TDTyJMi3sz9H6mAB1bFqOYTHPJ7f4EerOJjCom82gMYMp\nWxue3RFuUf6MoIZHGeu8Yw15taDyfOZPTAwi1MW30IjLrNN4Rg96vk7zePPIHqK4\nO0b/19d7vEhraM0Al4D+QiIyg5QSK98QOBrlcSaXSNcyQQvjICko/t9YWMlsHXF7\nYoTHN5sRWRfLd/75W47ENnisospX/mqieqc1//Z14ydJOwF+05BCrJN5qUTGlgHP\npr5Q3gbwUSl5ZxThwaHqyDizdKWUSXUODU6E7jaXtQ+dSKep17Q3yZrrT9I1XsyK\nK0mk1Zy793QF78onEPAjoKZ4t+60lMchInWG4vOz/1cMhcQa6l8TVpsREU/3ojle\ngoGPwQOx1EtHmFpc/iMbMm/0CM+y+RdRc4jz90Gi+eHZAgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   }
+  },
+  "readme": "",
+  "steps": [
+   {
+    "_type": "step",
+    "expected_command": [
+     "git",
+     "clone",
+     "https://github.com/misaelvf2/asylo-hello-world.git"
+    ],
+    "expected_materials": [],
+    "expected_products": [
+     [
+      "CREATE",
+      "asylo-hello-world/hello_world/BUILD"
+     ],
+     [
+      "CREATE",
+      "asylo-hello-world/hello_world/hello_driver.cc"
+     ],
+     [
+      "CREATE",
+      "asylo-hello-world/hello_world/hello_enclave.cc"
+     ],
+     [
+      "CREATE",
+      "asylo-hello-world/hello_world/hello.proto"
+     ],
+     [
+      "DISALLOW",
+      "asylo-hello-world/hello_world/*"
+     ]
+    ],
+    "name": "clone",
+    "pubkeys": [
+     "c94ad173b252876103289acbc43158fb310a575cd873096fb876c5b2bdafedcc"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [],
+    "expected_materials": [
+     [
+      "MATCH",
+      "asylo-hello-world/hello_world/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "clone"
+     ],
+     [
+      "DISALLOW",
+      "asylo-hello-world/hello_world/*"
+     ]
+    ],
+    "expected_products": [
+     [
+      "ALLOW",
+      "asylo-hello-world/hello_world/BUILD"
+     ],
+     [
+      "ALLOW",
+      "asylo-hello-world/hello_world/hello_driver.cc"
+     ],
+     [
+      "ALLOW",
+      "asylo-hello-world/hello_world/hello_enclave.cc"
+     ],
+     [
+      "ALLOW",
+      "asylo-hello-world/hello_world/hello.proto"
+     ],
+     [
+      "DISALLOW",
+      "asylo-hello-world/hello_world/*"
+     ]
+    ],
+    "name": "modify",
+    "pubkeys": [
+     "c94ad173b252876103289acbc43158fb310a575cd873096fb876c5b2bdafedcc"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [
+     "tar",
+     "--exclude",
+     ".git",
+     "-zcvf",
+     "asylo-hello-world.tar.gz",
+     "asylo-hello-world"
+    ],
+    "expected_materials": [
+     [
+      "MATCH",
+      "asylo-hello-world/hello_world/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "modify"
+     ],
+     [
+      "DISALLOW",
+      "asylo-hello-world/hello_world/*"
+     ]
+    ],
+    "expected_products": [
+     [
+      "CREATE",
+      "asylo-hello-world.tar.gz"
+     ],
+     [
+      "DISALLOW",
+      "*"
+     ]
+    ],
+    "name": "package",
+    "pubkeys": [
+     "b6fe21127fc69260e956b669a961dded5a559e9d56e8a3d67f602b5f7fd84866"
+    ],
+    "threshold": 1
+   }
+  ]
+ }
+}

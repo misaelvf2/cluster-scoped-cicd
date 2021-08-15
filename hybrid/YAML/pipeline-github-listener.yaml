@@ -42,7 +42,7 @@ metadata:
 spec:
   params:
     - name: gitrevision
-      value: in-toto
+      value: master
     - name: gitrepositoryurl
       value: $(body.repository.clone_url)
 ---
@@ -60,9 +60,18 @@ spec:
       metadata:
         generateName: secure-pipeline-run-
       spec:
-        serviceAccountName: registry-sa
         pipelineRef:
           name: secure-pipeline
+        workspaces:
+          - name: ws
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 2Gi
+        serviceAccountName: registry-sa
         resources:
           - name: source-repo
             resourceRef:

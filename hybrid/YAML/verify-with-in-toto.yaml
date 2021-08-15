@@ -1,0 +1,57 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: verify-with-in-toto
+spec:
+  workspaces:
+    - name: docker-source
+  steps:
+    - name: copy-over
+      image: misaelvf2/kaniko-in-toto
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/tekton/home/.docker/"
+      script: |
+        #!/usr/bin/env bash
+        cp $(workspaces.docker-source.path)/asylo-hello-world.tar.gz .
+        cp $(workspaces.docker-source.path)/root.layout .
+        cp $(workspaces.docker-source.path)/owner.pub .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep clone.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep modify.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep build_and_push.*.link) .
+        cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep package.*.link) .
+
+        cat clone.*.link
+        echo "-------------------------------------------- CLONE ---------------------------------------------"
+        cat modify.*.link
+        echo "-------------------------------------------- MODIFY ---------------------------------------------"
+        cat build_and_push.*.link
+        echo "-------------------------------------------- BUILD_AND_PUSH -------------------------------------"
+        cat package.*.link
+        echo "-------------------------------------------- PACKAGE --------------------------------------------"
+    - name: verify
+      image: misaelvf2/kaniko-in-toto
+      script : |
+        #!/usr/bin/env bash
+        cp $(workspaces.docker-source.path)/asylo-hello-world.tar.gz home
+
+        ls home
+        cd home
+
+        in-toto-verify --verbose --layout $(workspaces.docker-source.path)/root.layout \
+        --layout-key $(workspaces.docker-source.path)/owner.pub --link-dir $(workspaces.docker-source.path)
+      # command: ["in-toto-verify", "--verbose", "--layout", "$(workspaces.docker-source.path)/root.layout", "--layout-key", "$(workspaces.docker-source.path)/owner.pub", "--link-dir", "$(workspaces.docker-source.path"]
+      # command:
+      #   - in-toto-verify
+      # args:
+      #   - --verbose
+      #   - --layout
+      #   - $(workspaces.docker-source.path)/root.layout
+      #   - --layout-key
+      #   - $(workspaces.docker-source.path)/owner.pub
+      #   - --link-dir
+      #   - $(workspaces.docker-source.path)
+      # script: |
+      #   #!/usr/bin/env bash
+      #   ls -l $(workspaces.docker-source.path)
+      #   in-toto-verify --verbose --layout $(workspaces.docker-source.path)/root.layout --layout-key $(workspaces.docker-source.path)/owner.pub --link-dir $(workspaces.docker-source.path)
