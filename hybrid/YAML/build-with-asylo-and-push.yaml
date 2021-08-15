@@ -57,16 +57,11 @@ spec:
           value: "9999999"
       script: |
         #!/usr/bin/env bash
-        echo "ls /workspace/docker-source--------------"
-        ls /workspace/docker-source
-        cat /workspace/docker-source/hello_world/hello_driver.cc
-        echo "----------------------------------"
-
         mkdir asylo-hello-world
         cp -r $(params.pathToContext) asylo-hello-world/
 
         in-toto-run -s --verbose -n package --materials asylo-hello-world/hello_world/* \
-        --products asylo-hello-world.tar.gz --key /workspace/docker-source/build_and_push -- tar \
+        --products asylo-hello-world.tar.gz --key $(workspaces.build-push-key-secret.path)/ssh-privatekey -- tar \
         --exclude '.git' -zcvf asylo-hello-world.tar.gz /workspace/docker-source/
 
         cp asylo-hello-world.tar.gz $(workspaces.link-metadata.path)/asylo-hello-world.tar.gz
