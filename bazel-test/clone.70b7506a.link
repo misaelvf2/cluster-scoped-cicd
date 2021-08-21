@@ -1,0 +1,32 @@
+{
+ "signatures": [
+  {
+   "keyid": "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae",
+   "sig": "69ad5e73c37443f951b9fa48070dca459dc66870767f8410da9c0f7878d2298635ea2d76357d381810a08c35e6828e4b8e5b08378a887e9a06a9c64296d3e5ca718284280ddbd4b7d69ecae8a637cc09f47fe98fd28e836a9c9a62baf80c2a8405f209cd246a3e38655755d7f5d1a357c5c74e805d9b563bdf98bf08b5affd733743fcccffcf2c57d670fff0652cfdc336efdb0366fd2bcccce847648c990c5d956d57b55a4fa19e32b8db3bdf8092507fd82ccdfbcbcb534e31a30058ef02270fa5efc606268262de2b606e336a09090ec753c7c3095b09fb7de5f7c737cc5ed67f32a23189d1433f39cc43af1c38df79440e059711b6d82a669a6eb7d84f3bb431b79e1b25a59655e10f99d51d17a281ed07cf0158ceee10e6fd2b39c41b0b7bd60122b061a6a14e0a1b9aa5241448da0aa6dbf14034bf722e9f6fda691b2cdff93ef5ee41114a7e3d920d4423a55ce92a8364b652fe65b4964871fad446396a58c73ce7edb9d121b09487fab2aced648c2e3e4d6d24a2f1e93890cba0b4cf"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 0,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "git",
+   "clone",
+   "https://github.com/misaelvf2/cluster-scoped-cicd.git"
+  ],
+  "environment": {},
+  "materials": {},
+  "name": "clone",
+  "products": {
+   "cluster-scoped-cicd/bazel-test/test/BUILD": {
+    "sha256": "9799b57079ccd3193b44d897e841ec30b1a3b18ef8ed6522fe0e8621159ad135"
+   },
+   "cluster-scoped-cicd/bazel-test/test/hello-world.cc": {
+    "sha256": "5e35085420099d67bfb3624338b2a150d9dee6bb3d5fff4e930643d63d2788b5"
+   }
+  }
+ }
+}

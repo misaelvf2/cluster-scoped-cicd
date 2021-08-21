@@ -1,0 +1,31 @@
+{
+ "signatures": [
+  {
+   "keyid": "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae",
+   "sig": "410776c28d1f62b2ef9bf4af90ad2af277aca00dd283f3001e8a79d0b57e383c15f0df1ec0d6fe0f638542f3955d20cc8a65f25c226a5fb847f8c87227897a7306169d778d6d26ce98e594624faf1df249734b6a5296b5cf3e34993e73b6b63f673aa9467adf2745a11fd4315f4853b3ee085473e8071f9b56ccc3f6247d4716072e43507277f74e42bcc40ee2685ae9eb273193bbfd5716441c52c9c0ea9f17a766dccfec611a531e096286d11426f6ed99bfdea58ffaad9513c86dcf32b4c26d94414ce790b3b223e259fd43134767c1887be527be9da43511963d553b85c4ae68a1c219ed628647eb45a6fd0cbd8667a10100d971a728f8f816e2f3e256bad9b1923428896b068587d4a176c80a95e5164859cbe6a1992d3f77be58cba7461423f7a580048c2cbc1abaf0a4e5a1632e1d0e8b63fdc48518dc1dc3ee2eca5480f0f5bb74ec0ec7e9f7757f62892d251c0ba034bcb93892beecb6b720d8253fd21955203509638caeab7a1d91ea729861f3ce3531a8bf189dc417b229e188fc"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {},
+  "command": [],
+  "environment": {},
+  "materials": {
+   "cluster-scoped-cicd/bazel-test/test/BUILD": {
+    "sha256": "9799b57079ccd3193b44d897e841ec30b1a3b18ef8ed6522fe0e8621159ad135"
+   },
+   "cluster-scoped-cicd/bazel-test/test/hello-world.cc": {
+    "sha256": "5e35085420099d67bfb3624338b2a150d9dee6bb3d5fff4e930643d63d2788b5"
+   }
+  },
+  "name": "modify",
+  "products": {
+   "cluster-scoped-cicd/bazel-test/test/BUILD": {
+    "sha256": "9799b57079ccd3193b44d897e841ec30b1a3b18ef8ed6522fe0e8621159ad135"
+   },
+   "cluster-scoped-cicd/bazel-test/test/hello-world.cc": {
+    "sha256": "48debe6827dc029a589c6891edc3edc6356f9df0e6c7637d9abb672482982daf"
+   }
+  }
+ }
+}
