@@ -6,4 +6,4 @@ spec:
   type: image
   params:
     - name: url
-      value: misaelvf2/cloud-sec
+      value: misaelvf2/test-hello-world

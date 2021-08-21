@@ -1,0 +1,70 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-and-push
+spec:
+  params:
+    - name: pathToDockerFile
+      type: string
+      description: The path to the Dockerfile to build
+      default: $(resources.inputs.docker-source.path)/Dockerfile
+    - name: pathToContext
+      type: string
+      description: |
+        The build context used by Kaniko
+        (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
+      default: $(resources.inputs.docker-source.path)
+  workspaces:
+    - name: link-metadata
+    - name: build-push-key-secret
+  resources:
+    inputs:
+      - name: docker-source
+        type: git
+    outputs:
+      - name: builtImage
+        type: image
+  steps:
+    - name: build-and-push
+      image: misaelvf2/kaniko-in-toto
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/tekton/home/.docker/"
+        - name: "IN_TOTO_LINK_CMD_EXEC_TIMEOUT"
+          value: "9999999"
+      script: |
+        #!/usr/bin/env bash
+        ls $(params.pathToContext)
+
+        ls $(workspaces.build-push-key-secret.path)
+
+        mkdir cicd-hello-world
+        cp -r $(params.pathToContext) cicd-hello-world
+
+        in-toto-run -s --verbose -n build_and_push --materials cicd-hello-world/hello_world/* \
+        --key $(workspaces.build-push-key-secret.path)/ssh-privatekey -- executor --skip-tls-verify --dockerfile=$(params.pathToDockerFile) \
+        --destination=$(resources.outputs.builtImage.url) --context=$(params.pathToContext) --build-arg=BASE=alpine:3
+
+        cp /workspace/docker-source/clone.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep clone.*.link)
+        cp /workspace/docker-source/modify.*.link $(workspaces.link-metadata.path)/$(ls /workspace/docker-source/ | grep modify.*.link)
+        cp build_and_push.*.link $(workspaces.link-metadata.path)/$(ls | grep build_and_push.*.link)
+        cp /workspace/docker-source/root.layout $(workspaces.link-metadata.path)/root.layout
+        cp /workspace/docker-source/owner.pub $(workspaces.link-metadata.path)/owner.pub
+    - name: package
+      image: misaelvf2/in-toto
+      env:
+        - name: "IN_TOTO_LINK_CMD_EXEC_TIMEOUT"
+          value: "9999999"
+      script: |
+        #!/usr/bin/env bash
+        mkdir cicd-hello-world
+        cp -r $(params.pathToContext) cicd-hello-world/
+
+        in-toto-run -s --verbose -n package --materials cicd-hello-world/hello_world/* \
+        --products cicd-hello-world.tar.gz --key $(workspaces.build-push-key-secret.path)/ssh-privatekey -- tar \
+        --exclude '.git' -zcvf cicd-hello-world.tar.gz /workspace/docker-source/
+
+        cp cicd-hello-world.tar.gz $(workspaces.link-metadata.path)/cicd-hello-world.tar.gz
+        echo "ls ----------------------"
+        ls
+        cp package.*.link $(workspaces.link-metadata.path)/$(ls | grep package.*link)

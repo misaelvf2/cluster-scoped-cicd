@@ -13,7 +13,7 @@ spec:
           value: "/tekton/home/.docker/"
       script: |
         #!/usr/bin/env bash
-        cp $(workspaces.docker-source.path)/asylo-hello-world.tar.gz .
+        cp $(workspaces.docker-source.path)/cicd-hello-world.tar.gz .
         cp $(workspaces.docker-source.path)/root.layout .
         cp $(workspaces.docker-source.path)/owner.pub .
         cp $(workspaces.docker-source.path)/$(ls workspace/docker-source | grep clone.*.link) .
@@ -33,25 +33,10 @@ spec:
       image: misaelvf2/kaniko-in-toto
       script : |
         #!/usr/bin/env bash
-        cp $(workspaces.docker-source.path)/asylo-hello-world.tar.gz home
+        cp $(workspaces.docker-source.path)/cicd-hello-world.tar.gz home
 
         ls home
         cd home
 
         in-toto-verify --verbose --layout $(workspaces.docker-source.path)/root.layout \
         --layout-key $(workspaces.docker-source.path)/owner.pub --link-dir $(workspaces.docker-source.path)
-      # command: ["in-toto-verify", "--verbose", "--layout", "$(workspaces.docker-source.path)/root.layout", "--layout-key", "$(workspaces.docker-source.path)/owner.pub", "--link-dir", "$(workspaces.docker-source.path"]
-      # command:
-      #   - in-toto-verify
-      # args:
-      #   - --verbose
-      #   - --layout
-      #   - $(workspaces.docker-source.path)/root.layout
-      #   - --layout-key
-      #   - $(workspaces.docker-source.path)/owner.pub
-      #   - --link-dir
-      #   - $(workspaces.docker-source.path)
-      # script: |
-      #   #!/usr/bin/env bash
-      #   ls -l $(workspaces.docker-source.path)
-      #   in-toto-verify --verbose --layout $(workspaces.docker-source.path)/root.layout --layout-key $(workspaces.docker-source.path)/owner.pub --link-dir $(workspaces.docker-source.path)

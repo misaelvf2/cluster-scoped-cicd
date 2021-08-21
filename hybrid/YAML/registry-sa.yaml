@@ -5,3 +5,4 @@ metadata:
 secrets:
   - name: regcred
   - name: build-push-key-secret
+  - name: no-asylo-build-push-key-secret

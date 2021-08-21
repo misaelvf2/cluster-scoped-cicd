@@ -1,0 +1,179 @@
+{
+ "signatures": [
+  {
+   "keyid": "bbc1c26b8c3555bfd5b4fa5b1b8a49754f459223eb256c69f557012637079c55",
+   "sig": "4b6a0e05aca6f4d268afeb865eb982c741a5f034e8a0f1307f2d3bc1f35497f5cf330bc7b7c9e711090603c2f235b68669a9bbd029d12dfb2ff0b8eab63ce002d012fc558b02ce11ef72422461a5b7c9b8d015e20342f5ca93e0c53732a8b79460facf129cfa009c135df85124a8c45396a3dbf5f4a6f1fc295d15dfd7b9a939db38f6d9c8070529ac28493be512b446f875eaf5263466151242db6c3dc776d7df0deb2722720717c63390c182b9df5cc08437a8e4bd7f410852a399adc696b4c5ce692ccda9133165267428aed0387159fbcbbe3dc3f034f6cb2548b66290c393ae152334e18499bcfa1de2fa8ad2466da7cc95663191e694b12840919316f62f786116c02a6c800e7002be8a436e47b406bc3a1b8194e254e1969b10552ac7aa17cc16dcf3c4df5fd4805d0d06962727ce827eab1bbc53bf252157136ca000654b45752dd009a4a820bc50ac471c973f496b5640a77992f7ed86230989eb0d4bf6557a297260b063688acfc7744391150350fc3c9cf4a9e53e4aa10e9f3adb"
+  }
+ ],
+ "signed": {
+  "_type": "layout",
+  "expires": "2021-12-18T00:42:24Z",
+  "inspect": [
+   {
+    "_type": "inspection",
+    "expected_materials": [
+     [
+      "MATCH",
+      "bazel-test.tar.gz",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "package"
+     ]
+    ],
+    "expected_products": [
+     [
+      "MATCH",
+      "cluster-scoped-cicd/bazel-test/test/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "modify"
+     ]
+    ],
+    "name": "untar",
+    "run": [
+     "tar",
+     "xzf",
+     "bazel-test.tar.gz"
+    ]
+   }
+  ],
+  "keys": {
+   "526f4baac89ba48f426e3462e01e081827ca7eb0c8a9f4587a2349b42186b44a": {
+    "keyid": "526f4baac89ba48f426e3462e01e081827ca7eb0c8a9f4587a2349b42186b44a",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA0uOZEoEs3nxJLUbU7cMc\nXiSJlZ3zEJQKoseWBv7wnEBSLuNNiM8UXHJuF7hMMVN3+3j1f1rVotGE3qy4V+TP\nRjvXj+B8+KGueHFn7RVLb+xbLHcp4vFScE8aVkXnXaQEeL4ffKOZyqUqYr8xe4K2\nVyAB/RFogY//V0lQ+knSuNKOeSmA6MU7dgeddTkZs8Sw6m4S5alMejlAnin6iZDR\nMgCUXXZs1KVvNWl/UeoVMStL2J28ejKpYLI4dM+psaU2033hmoPIbSu3L3D6JKmG\nMNVruGbtF2eSUzBWOJ/g/wVeLUzp92ggMhdVSHMl2BOXTgs5Z+ZtzYXF66z12zMG\njXevrard79WYRPhDWj2+AKFk4muzCJrA7JTNrKvmpUmnKVA+8UwT1eewJw8U/oSA\nFg95MrmR9uB1QbDVSDm5jrKkpQnQpr0x16Rzl1C/AM4oA1rZDAzBdDh2nPp29fnO\nUao7pRsbDJl2DVJ4yaCrWGZ7lZbgn0/E2BxrP0fSxIF7AgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   },
+   "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae": {
+    "keyid": "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA1wajpVU/slAJNSYmmc/t\nSAHMf1bEtkYHl3sMn6T5ECBh9MZySex2YWMctaF+lgN/QYWXVQrWqKbQjh7hPB/9\nga+cG5D/R0cQHlSw8gXoJ1ichZU/waK5uip3zHMV+iQinIHZ98Sb4TbkNzwLzvvZ\nf5TII1Coy5SraI5UZJvpfdWSHAAlladC8cnGw1Jrd2USEIw8uLg7+mHO58Qvlujr\nWR9hrgEBmSf+taoyJkWl/Gq1vCPjPREQn6CcT0MDfjnwz0gYvkjV9zgZ4gRRFjKy\nm4LOOytXLf3KIbde/rid8PIJUrUzcw1YBCRCohAZhva5AnKbtJDDEEvYlZNYMFw9\nrfdMkPHsGtsggp3m3jZFRHl7+iSnzQ0jPW+R5fFdpfTM0p506EmXONZhLVucf3I6\ny2M7sHTtbmJ60bBfbTHXW3rxUI+C1YXBwylivk2OamAg7hgZC8II5XabSiAdo96p\nZ2EeH3T+33I5ByNR/pemjluwV9oToP5Yz/wcbOBrJNQDAgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   }
+  },
+  "readme": "",
+  "steps": [
+   {
+    "_type": "step",
+    "expected_command": [
+     "git",
+     "clone",
+     "https://github.com/misaelvf2/cluster-scoped-cicd.git"
+    ],
+    "expected_materials": [],
+    "expected_products": [
+     [
+      "CREATE",
+      "cluster-scoped-cicd/bazel-test/test/BUILD"
+     ],
+     [
+      "CREATE",
+      "cluster-scoped-cicd/bazel-test/test/hello-world.cc"
+     ],
+     [
+      "DISALLOW",
+      "cluster-scoped-cicd/bazel-test/test/*"
+     ]
+    ],
+    "name": "clone",
+    "pubkeys": [
+     "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [],
+    "expected_materials": [
+     [
+      "MATCH",
+      "cluster-scoped-cicd/bazel-test/test/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "clone"
+     ],
+     [
+      "DISALLOW",
+      "cluster-scoped-cicd/bazel-test/test/*"
+     ]
+    ],
+    "expected_products": [
+     [
+      "ALLOW",
+      "cluster-scoped-cicd/bazel-test/test/BUILD"
+     ],
+     [
+      "ALLOW",
+      "cluster-scoped-cicd/bazel-test/test/hello-world.cc"
+     ],
+     [
+      "DISALLOW",
+      "cluster-scoped-cicd/bazel-test/test/*"
+     ]
+    ],
+    "name": "modify",
+    "pubkeys": [
+     "70b7506a6d29c1c852d9878cde53aa21d3a4fe85d2be218216c2374b4793e8ae"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [
+     "tar",
+     "--exclude",
+     ".git",
+     "-zcvf",
+     "bazel-test.tar.gz",
+     "bazel-test"
+    ],
+    "expected_materials": [
+     [
+      "MATCH",
+      "cluster-scoped-cicd/bazel-test/test/*",
+      "WITH",
+      "PRODUCTS",
+      "FROM",
+      "modify"
+     ],
+     [
+      "DISALLOW",
+      "cluster-scoped-cicd/bazel-test/test/*"
+     ]
+    ],
+    "expected_products": [
+     [
+      "CREATE",
+      "bazel-test.tar.gz"
+     ],
+     [
+      "DISALLOW",
+      "*"
+     ]
+    ],
+    "name": "package",
+    "pubkeys": [
+     "526f4baac89ba48f426e3462e01e081827ca7eb0c8a9f4587a2349b42186b44a"
+    ],
+    "threshold": 1
+   }
+  ]
+ }
+}

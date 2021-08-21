@@ -14,7 +14,7 @@ spec:
   tasks:
     - name: secure-build
       taskRef:
-        name: build-with-asylo-and-push
+        name: build-and-push
       workspaces:
         - name: link-metadata
           workspace: ws

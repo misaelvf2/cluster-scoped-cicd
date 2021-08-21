@@ -11,7 +11,7 @@ spec:
   - name: GitHubUser
     value: "misaelvf2"
   - name: GitHubRepo
-    value: "asylo-hello-world"
+    value: "cicd-hello-world"
   - name: GitHubSecretName
     value: webhook-secret
   - name: GitHubAccessTokenKey
@@ -19,7 +19,7 @@ spec:
   - name: GitHubSecretStringKey
     value: secret
   - name: ExternalDomain
-    value: fe9c48c2b22c.ngrok.io
+    value: 890f83842233.ngrok.io
 #   If you are using github enterprise, provide a value for GitHubDomain
 #  - name: GitHubDomain
 #    value: git.corp.com
